@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>BUS TRANSPORT SYSTEM</title>
+  <style> body
+  {background-color:#F0F8FF;
+  }
+  .btn{background-color:#5F9EA0;
+  height: 60px;
+  }
+  img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+  </style> 
+  
+  
+</head>
+
+<body>
+  
+ <h1 style="color:Tomato; text-align: center;">BUS RESERVATION SYSTEM</h1>
+ 
+ <table>
+	<tr>
+	<td>
+	<h1>Get all the route details from Route table :</h1>
+	<form action="{{ url_for('Route_details')}}"method="post">
+		<button type="submit" class="btn">Get_Route_Details</button>
+		
+    </form>
+
+	<br>
+	<br>
+	{% for r in Route_details  %}
+    <li>{{r}}</li>
+    {% endfor %}
+	
+	</td>
+	</tr>
+     
+   <tr>
+   <td>
+   <h1>Enter the Passenger ID to view its details:</h1>
+   <form action="{{ url_for('Passenger_details')}}"method="post">
+		<INPUT TYPE="Text" style="height: 50px" NAME="P_id" placeholder="P_id" required="required"> 
+		<button type="submit" class="btn">Get_Passenger_Details</button>
+		
+    </form>
+
+   <br>
+   <br>
+   {% for r in Passenger_details  %}
+   <li>{{r}}</li>
+   {% endfor %}    
+   </td>
+   </tr>
+   
+      
+   <tr>
+   <td>
+   <h1>Update the route details for the below given route_id :</h1>
+   <form action="{{ url_for('update_distance')}}"method="post">
+		<INPUT TYPE="Text" style="height: 50px" NAME="R_id" placeholder="R_id" required="required">
+		<INPUT TYPE="Text" style="height: 50px" NAME="distance" placeholder="distance" required="required">
+		<button type="submit" class="btn">update_distance</button>
+		
+    </form>
+
+   <br>
+   <br>
+   {% for r in update_distance  %}
+   <li>{{r}}</li>
+   {% endfor %}   
+   </td>
+   </tr>
+   
+   
+   <tr>
+   
+   </tr>
+   <tr>
+   <td>
+   <h1>Update the Zipcode in Passenger:</h1>
+   <form action="{{ url_for('zipcode_Change')}}"method="post">
+		<INPUT TYPE="Text" style="height: 50px" NAME="Zipcode1" placeholder="Old_Zipcode" required="required">
+		<INPUT TYPE="Text" style="height: 50px" NAME="Zipcode2" placeholder="New_Zipcode" required="required">
+		<button type="submit" class="btn">UPDATE_zipcode</button>
+		
+   </form>
+   <br>
+   <br>
+   {% for r in zipcode_Change  %}
+   <li>{{r}}</li>
+   {% endfor %}   
+   </td>
+   </tr>
+   <tr>
+    <td>
+    <h1>Delete the one particular type(AC or Non AC only) of bus?</h1>
+    <form action="{{ url_for('DELETE_TYPE_bus')}}"method="post">
+     <INPUT TYPE="Text" style="height: 50px" NAME="B.TYPE" placeholder="B.TYPE" required="required">
+     
+     <button type="submit" style="width:300px" class="btn"	>Delete_prefered_bus</button>
+    </form>
+    <br>
+    <br>
+    {% for r in DELETE_TYPE_bus %}
+    <li>{{r}}</li>
+    {% endfor %} 
+    
+    </td>
+    </tr>
+   <tr>
+   <td>
+   <h1>Update the Street Address for the given Passenger Id</h1>
+   <form action="{{ url_for('Update_Address')}}"method="post">
+	   <INPUT TYPE="Text" style="height: 50px" NAME="P_id" placeholder="P_id" required="required">
+	   <INPUT TYPE="Text" style="height: 50px" NAME="Street Address" placeholder="Street Address" required="required">
+       <button type="submit" style="width:300px" class="btn">Update_Address</button>
+   </form>
+   <br>
+   <br>
+   {% for r in Update_Address  %}
+   <li>{{r}}</li>
+   {% endfor %}     
+   </td>
+   </tr>
+   
+   <tr>
+   <td>
+   <h1>Number of passengers booked the ticket on the given type(AC or Non AC only)?</h1>
+   <form action="{{ url_for('Count_prefered_bus')}}"method="post">
+		<INPUT TYPE="Text" style="height: 50px" NAME="B.TYPE" placeholder="B.TYPE" required="required">
+		<button type="submit" style="width:300px" class="btn"	>Count_prefered_bus</button>
+   </form>
+   <br>
+   <br>
+   {% for r in Count_prefered_bus %}
+   <li>{{r}}</li>
+   {% endfor %}   
+   
+   </td>
+   </tr>
+
+   <tr>
+   <td>
+   <h1>Business owner wants to know the details of all employees working on schedules  between given schedule id's schedule_id's between [1,10] only.</h1>
+   <form action="{{ url_for('employee_schedule')}}"method="post">
+        <INPUT TYPE="Text" style="height: 50px" NAME="S_id1" placeholder="Schedule_id1" required="required">
+		<INPUT TYPE="Text" style="height: 50px" NAME="S_id 2" placeholder="Schedule_id2" required="required">          
+        <button type="submit" style="width:300px" class="btn"	>Employee Schedule</button>
+   </form>
+    <br>
+    <br>
+	{% for r in employee_schedule %}
+    <li>{{r}}</li>
+    {% endfor %} 
+    </td>
+    </tr>
+	<tr>
+    <td>
+    <h1>What is the first X  preferred payment modes Where (X=[1,4] only)?</h1>
+	<form action="{{ url_for('prefered_payment')}}"method="post">
+		<INPUT TYPE="Text" style="height: 50px" NAME="X" placeholder="X" required="required">
+        <button type="submit" style="width:300px" class="btn">Top X Most prefered payment method</button>
+    </form>
+	<br>
+    <br>
+	{% for r in prefered_payment %}
+    <li>{{r}}</li>
+    {% endfor %} 
+	</td>
+	</tr>
+    <tr>
+    <td>
+    <h1>What was the most preferred time and day in a week where bookings were made</h1>
+    <form action="{{ url_for('prefered_date_time')}}"method="post">
+        <button type="submit" style="width:300px" class="btn">Most prefered date and time</button>
+    </form>
+    <br>
+    <br>
+	{% for r in prefered_date_time %}
+	<li>{{r}}</li>
+    {% endfor %} 
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <h1>What was the aggregate results based on passenger zipcode and mode of booking</h1>
+    <form action="{{ url_for('aggregate_results')}}"method="post">
+        <button type="submit" style="width:300px" class="btn">Aggregate Results</button>
+    </form>
+    <br>
+    <br>
+	{% for r in aggregate_results %}
+	<li>{{r}}</li>
+	{% endfor %} 
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <h1>What was the total seats left in all routes available</h1>
+    <form action="{{ url_for('total_seats_left')}}"method="post">
+        <button type="submit" style="width:300px" class="btn">Total seats left</button>
+    </form>
+    <br>
+    <br>
+	{% for r in total_seats_left %}
+	<li>{{r}}</li>
+	{% endfor %} 
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <h1>List down the routes based on the distances between then (highest to lowest range) (rank them)</h1>
+    <form action="{{ url_for('routes_distance')}}"method="post">
+        <button type="submit" style="width:300px" class="btn">Routes distance</button>
+    </form>
+    <br>
+    <br>
+	{% for r in routes_distance %}
+	<li>{{r}}</li>
+	{% endfor %} 
+    </td>
+    </tr>
+    <tr>
+      <td width="50%">
+      <h1>Click the button to get the top three most travelled routes:</h1>
+      <form action="{{ url_for('most_travelled_routes')}}"method="post"> 
+        <button type="submit" style="width:300px" class="btn">Get top three travelled routes</button>
+        </form>
+    
+       <br>
+       <br>
+       {% for r in most_travelled_routes  %}
+       <li>{{r}}</li>
+       {% endfor %}
+      
+       </td>
+       </tr>
+       <tr>
+        <td>
+        <h1>List the Street Address and the count of street addresses that have given parameter in the street address</h1>
+        <form action="{{ url_for('count_Street_address')}}"method="post">
+          <INPUT TYPE="Text" style="height: 50px" NAME="Street Address" placeholder="Street Address" required="required">
+            <button type="submit" style="width:300px" class="btn">Get count_Street_address</button>
+        </form>
+        <br>
+        <br>
+        {% for r in count_Street_address  %}
+        <li>{{r}}</li>
+        {% endfor %}   
+        </td>
+        </tr>
+       <tr>
+        <td>
+        <h1>Click the button to get the least three most travelled routes:</h1>
+        <form action="{{ url_for('least_travelled_routes')}}"method="post">
+         
+         <button type="submit" style="width:300px" class="btn"	>Get least three travelled routes</button>
+         </form>
+     
+        <br>
+        <br>
+        {% for r in least_travelled_routes  %}
+        <li>{{r}}</li>
+        {% endfor %}   
+        </td>
+        </tr>
+        <td>
+   <h1>Click the button to get the Zipcodes with the most bookings.</h1>
+   <form action="{{ url_for('most_bookings_zipcode')}}"method="post">
+     
+     <button type="submit" style="width:300px" class="btn"	>Get most_bookings_zipcode</button>
+    </form>
+ 
+   <br>
+   <br>
+   {% for r in most_bookings_zipcode  %}
+   <li>{{r}}</li>
+   {% endfor %} 
+   
+   </td>
+</body>
+</html>

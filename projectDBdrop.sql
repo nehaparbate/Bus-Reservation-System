@@ -1,0 +1,13 @@
+
+-- Query to Drop tables --
+
+
+DROP TABLE Fall22_S001_6_PassengerContacts PURGE;
+DROP TABLE Fall22_S001_6_Books PURGE;
+DROP TABLE Fall22_S001_6_Ticket PURGE;
+DROP TABLE Fall22_S001_6_Passenger PURGE;
+DROP TABLE Fall22_S001_6_Bus PURGE;
+DROP TABLE Fall22_S001_6_EmployeeContacts PURGE;
+DROP TABLE Fall22_S001_6_Employee PURGE;
+DROP TABLE Fall22_S001_6_Scheduler PURGE;
+DROP TABLE Fall22_S001_6_Route PURGE;
